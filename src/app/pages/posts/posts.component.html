@@ -1,3 +1,35 @@
-<p>
-  posts works!
-</p>
+<div class="table-responsive">
+  <table class="table table-hover table-striped table-dark table-sm" id="postsTable">
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Link</th>
+        <th>Task ID</th>
+        <th>Status</th>
+        <th>Added At</th>
+        <th>Updated At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="posts === null;else hasposts">
+        <td colspan="6">No Content</td>
+      </tr>
+      <ng-template #hasposts>
+        <tr *ngFor="let item of posts">
+          <td class="author">
+            <a href="https://steemit.com/@{{ item.author }}" target="_{{ item.id }}">{{ item.author }}</a>
+          </td>
+          <td class="link">
+            <a href="{{ item.link }}" target="#{{ item.id }}">{{ str_limit(item.link) }}</a>
+          </td>
+          <td>{{ item.task_id }}</td>
+          <td>
+            <b>{{ c_status(item.status) }}</b>
+          </td>
+          <td>{{ item.created_at | date:'short' }}</td>
+          <td>{{ item.updated_at | date:'short' }}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

@@ -1,22 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { HistoryService } from './../../services/history.service';
+
 @Component({
   selector: 'app-histories',
   templateUrl: './histories.component.html',
   styleUrls: ['./histories.component.scss']
 })
 export class HistoriesComponent implements OnInit {
-  type: string;
+  histories: any;
 
   constructor(
-    private route: ActivatedRoute
-  ) {
-    route.params.subscribe(res => this.type = res.type);
+    private historyService: HistoryService,) {
   }
 
   ngOnInit() {
-    console.log(this.type);
+    this.getHistories();
   }
 
+  getHistories() {
+    this.historyService.fetchData().subscribe((res) => {
+      // console.log(res.json());
+      this.histories = res.json();
+    });
+  }
+
+  weight_percentage(weight) {
+    return (weight / 10000) * 100;
+  }
 }
