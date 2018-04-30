@@ -12,6 +12,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { HistoriesComponent } from './pages/histories/histories.component';
 import { PostService } from './services/post.service';
 import { HistoryService } from './services/history.service';
+import { SearchService } from './services/search.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { HistoryService } from './services/history.service';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [PostService, HistoryService],
+  providers: [PostService, HistoryService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
