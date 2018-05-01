@@ -13,6 +13,10 @@ import { HistoriesComponent } from './pages/histories/histories.component';
 import { PostService } from './services/post.service';
 import { HistoryService } from './services/history.service';
 import { SearchService } from './services/search.service';
+import { SearchesComponent } from './pages/searches/searches.component';
+import { DetailComponent } from './pages/detail/detail.component';
+import { DetailService } from './services/detail.service';
+import { UtilService } from './services/util.service';
 
 
 @NgModule({
@@ -20,7 +24,9 @@ import { SearchService } from './services/search.service';
     AppComponent,
     NavigationComponent,
     PostsComponent,
-    HistoriesComponent
+    HistoriesComponent,
+    SearchesComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,7 @@ import { SearchService } from './services/search.service';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [PostService, HistoryService, SearchService],
+  providers: [PostService, HistoryService, SearchService, PostsComponent, DetailService, UtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

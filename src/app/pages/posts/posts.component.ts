@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { DatePipe } from '@angular/common';
 
 import { PostService } from './../../services/post.service';
+import { UtilService } from './../../services/util.service';
 
 @Component({
   selector: 'app-posts',
@@ -14,18 +15,20 @@ export class PostsComponent implements OnInit {
   status: string;
   valid_statuses: string[] = [
     'voted',
-    'unvoted',
+    'pending',
     'invald-link',
     'low-reputation',
     'old-post',
-    'errored',
+    'error',
     'blocked'
   ];
   posts: any;
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private router: Router,
+    private postService: PostService,
+    private utilService: UtilService
   ) {
     route.params.subscribe(res => {
       this.status = res.status;
@@ -53,30 +56,18 @@ export class PostsComponent implements OnInit {
   }
 
   c_status(status: number) {
-    if (status === 0) {
-      return 'UNVOTED';
-    } else if (status === 1) {
-      return 'VOTED';
-    } else if (status === 2) {
-      return 'INVALID LINK';
-    } else if (status === 3) {
-      return 'LOW REPUTATION';
-    } else if (status === 4) {
-      return 'OLD POST';
-    } else if (status === 5) {
-      return 'ERRORED';
-    } else if (status === 6) {
-      return 'BLOCKED';
-    }
+    return this.utilService.post_status(status);
   }
 
   str_limit(str: string) {
-    const limit = 50;
-    if (str.length > limit) {
-      const len = str.length - limit;
-      return '...' + str.substring(len);
-    } else {
-      return str;
-    }
+    return this.utilService.str_limit(str);
+  }
+
+  permalink(link: string) {
+    return this.utilService.permalink(link);
+  }
+
+  detail(item_id) {
+    this.router.navigate(['/details/' + item_id]);
   }
 }

@@ -1,0 +1,69 @@
+<div class="table-responsive" *ngIf="field==='posts'">
+  <table class="table table-hover table-striped table-dark table-sm" id="postsTable">
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Link</th>
+        <th>Task ID</th>
+        <th>Status</th>
+        <th>Added At</th>
+        <th>Updated At</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="results === null;else hasposts">
+        <td colspan="6">No Result for '{{ search_value }}'</td>
+      </tr>
+      <ng-template #hasposts>
+        <tr *ngFor="let item of results">
+          <td class="author">
+            <a href="https://steemit.com/@{{ item.author }}" target="_{{ item.id }}">{{ item.author }}</a>
+          </td>
+          <td class="link">
+            <a href="{{ item.link }}" target="#{{ item.id }}">{{ str_limit(item.link) }}</a>
+          </td>
+          <td>{{ item.task_id }}</td>
+          <td>
+            <b>{{ c_status(item.status) }}</b>
+          </td>
+          <td>{{ item.created_at | date:'short' }}</td>
+          <td>{{ item.updated_at | date:'short' }}</td>
+          <td>
+            <button type="button" class="btn btn-info btn-outline-info my-2 my-sm-0 btn-sm" (click)="detail(item.id)">Detail</button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
+
+<div class="table-responsive" *ngIf="field!=='posts'">
+  <table class="table table-hover table-striped table-dark">
+    <thead>
+      <tr>
+        <th>Item ID</th>
+        <th>Voter</th>
+        <th>Weight(%)</th>
+        <th>Commented</th>
+        <th>Voted</th>
+        <th>Latest At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="results === null;else hashistories">
+        <td colspan="6">No Result for '{{ search_value }}'</td>
+      </tr>
+      <ng-template #hashistories>
+        <tr *ngFor="let item of results">
+          <td>{{ item.item_id }}</td>
+          <td>{{ item.voter }}</td>
+          <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
+          <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>
+          <td class="text-{{ item.status == 1 ? 'success' : 'warning' }}">{{ item.status == 1 ? 'Yes' : 'No' }}</td>
+          <td>{{ item.updated_at | date:'short' }}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

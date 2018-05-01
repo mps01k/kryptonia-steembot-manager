@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" href="/">KBM</a>
   <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-      aria-expanded="false" aria-label="Toggle navigation">
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -10,18 +10,20 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <a class="dropdown-item" routerLink="/posts/voted" routerLinkActive="active">Voted</a>
-          <a class="dropdown-item" routerLink="/posts/unvoted" routerLinkActive="active">Unvoted</a>
+          <a class="dropdown-item" routerLink="/posts/pending" routerLinkActive="active">Pending</a>
           <a class="dropdown-item" routerLink="/posts/invalid-link" routerLinkActive="active">Invalid Link</a>
           <a class="dropdown-item" routerLink="/posts/low-reputation" routerLinkActive="active">Low Reputation</a>
           <a class="dropdown-item" routerLink="/posts/old-post" routerLinkActive="active">Old Post</a>
-          <a class="dropdown-item" routerLink="/posts/errored" routerLinkActive="active">Errored</a>
+          <a class="dropdown-item" routerLink="/posts/error" routerLinkActive="active">Error</a>
           <a class="dropdown-item" routerLink="/posts/blocked" routerLinkActive="active">Blocked</a>
         </div>
       </li>
-      <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/voting-history">Voting History</a></li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/voting-history">Voting History</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" name="search_value" placeholder="Search" [(ngModel)]="search_value">
+      <input class="form-control mr-sm-2" type="text" name="search_value" placeholder="Search" [(ngModel)]="search_value" (keyup)="input($event)">
       <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="search()">Search</button>
     </form>
   </div>

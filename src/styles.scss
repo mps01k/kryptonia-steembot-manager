@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: black;
+}
+
+.top {
+  padding: 28px;
+}
+
+.author {
+  a {
+    font-weight: bold !important;
+    color: burlywood !important;
+  }
+}
+
+.voter {
+  a {
+    font-weight: bold !important;
+    color: skyblue !important;
+  }
+}
