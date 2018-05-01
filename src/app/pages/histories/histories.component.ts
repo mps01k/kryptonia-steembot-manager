@@ -26,7 +26,11 @@ export class HistoriesComponent implements OnInit {
   getHistories() {
     this.historyService.fetchData().subscribe((res) => {
       // console.log(res.json());
-      this.histories = res.json();
+      if (res.json() !== 'Empty') {
+        this.histories = res.json();
+      } else {
+        this.histories = null;
+      }
     });
   }
 

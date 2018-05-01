@@ -11,16 +11,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of histories">
-        <td class="voter"><a href="https://steemit.com/@{{ item.voter }}" target="_{{ item.id }}">{{ item.voter }}</a></td>
-        <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
-        <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>
-        <td class="text-{{ item.status == 1 ? 'success' : 'warning' }}">{{ item.status == 1 ? 'Yes' : 'No' }}</td>
-        <td>{{ item.updated_at | date:'short' }}</td>
-        <td>
-          <button type="button" class="btn btn-info btn-outline-info my-2 my-sm-0 btn-sm" (click)="detail(item.item_id)">Post Detail</button>
-        </td>
+      <tr *ngIf="histories === null;else hashistories">
+        <td colspan="6" align="center">No Content</td>
       </tr>
+      <ng-template #hashistories>
+        <tr *ngFor="let item of histories">
+          <td class="voter"><a href="https://steemit.com/@{{ item.voter }}" target="_{{ item.id }}">{{ item.voter }}</a></td>
+          <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
+          <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>
+          <td class="text-{{ item.status == 1 ? 'success' : 'warning' }}">{{ item.status == 1 ? 'Yes' : 'No' }}</td>
+          <td>{{ item.updated_at | date:'short' }}</td>
+          <td>
+            <button type="button" class="btn btn-info btn-outline-info my-2 my-sm-0 btn-sm" (click)="detail(item.item_id)">Post Detail</button>
+          </td>
+        </tr>
+      </ng-template>
     </tbody>
   </table>
 </div>

@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr *ngIf="posts === null;else hasposts">
-        <td colspan="6">No Content</td>
+        <td colspan="7" align="center">No Content</td>
       </tr>
       <ng-template #hasposts>
         <tr *ngFor="let item of posts">
