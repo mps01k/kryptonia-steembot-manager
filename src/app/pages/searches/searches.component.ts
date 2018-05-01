@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import { SearchService } from './../../services/search.service';
+import { UtilService } from './../../services/util.service';
 
 @Component({
   selector: 'app-searches',
@@ -17,7 +18,8 @@ export class SearchesComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private utilService: UtilService
   ) {
     this.navigationSubscription = router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -45,35 +47,19 @@ export class SearchesComponent implements OnInit, OnDestroy {
   }
 
   c_status(status: number) {
-    if (status === 0) {
-      return 'PENDING';
-    } else if (status === 1) {
-      return 'VOTED';
-    } else if (status === 2) {
-      return 'INVALID LINK';
-    } else if (status === 3) {
-      return 'LOW REPUTATION';
-    } else if (status === 4) {
-      return 'OLD POST';
-    } else if (status === 5) {
-      return 'ERROR';
-    } else if (status === 6) {
-      return 'BLOCKED';
-    }
+    return this.utilService.post_status(status);
   }
 
   str_limit(str: string) {
-    const limit = 50;
-    if (str.length > limit) {
-      const len = str.length - limit;
-      return '...' + str.substring(len);
-    } else {
-      return str;
-    }
+    return this.utilService.str_limit(str);
   }
 
   weight_percentage(weight) {
-    return (weight / 10000) * 100;
+    return this.utilService.weight_percentage(weight);
+  }
+
+  permalink(link: string) {
+    return this.utilService.permalink(link);
   }
 
   detail(item_id) {
