@@ -63,7 +63,8 @@
                   <th>Weight(%)</th>
                   <th>Commented</th>
                   <th>Voted</th>
-                  <th>Latest At</th>
+                  <th>Created At</th>
+                  <th>Updated At</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,6 +73,7 @@
                   <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
                   <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>
                   <td class="text-{{ item.status == 1 ? 'success' : 'warning' }}">{{ item.status == 1 ? 'Yes' : 'No' }}</td>
+                  <td>{{ item.created_at | date:'short' }}</td>
                   <td>{{ item.updated_at | date:'short' }}</td>
                 </tr>
               </tbody>

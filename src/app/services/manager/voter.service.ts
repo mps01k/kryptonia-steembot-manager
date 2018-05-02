@@ -8,18 +8,20 @@ import { UtilService } from './../util.service';
 @Injectable()
 export class VoterService {
   env = environment;
+  headers = new Headers();
+  opts = new RequestOptions();
 
   constructor(
     private http: Http,
-    private headers: Headers,
-    private requestOptions: RequestOptions,
     private router: Router,
     private utilService: UtilService
-  ) { }
+  ) {}
 
   fetchData() {
-    // const
-    // this.headers.append('authorization', this.utilService.encode_ep('username:password'));
-    return this.http.get(this.env.apiHost + '/get-voters-list');
+    console.log(this.utilService.encode_ep('password'));
+    this.headers.append('authorization', this.utilService.encode_ep('username:password'));
+    this.headers.append('username', 'username');
+    this.opts.headers = this.headers;
+    return this.http.get(this.env.apiHost + '/api/get-voters-list', this.opts);
   }
 }

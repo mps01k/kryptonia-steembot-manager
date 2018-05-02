@@ -21,6 +21,7 @@ import { HashLocationStrategy } from '@angular/common';
 import { LoadingModule } from 'ngx-loading';
 import { VoterComponent } from './manager/voter/voter.component';
 import { VoterService } from './services/manager/voter.service';
+import { AuthService } from './services/manager/auth.service';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { VoterService } from './services/manager/voter.service';
     DetailService,
     UtilService,
     HashLocationStrategy,
-    VoterService
+    VoterService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from './../../environments/environment';
+import { config } from './../../environments/config';
+
+declare const Buffer;
 
 @Injectable()
 export class UtilService {
   env = environment;
-  // config = require('./../../../config.json');
+  config = config;
 
   constructor() { }
 
@@ -51,15 +54,15 @@ export class UtilService {
     return this.env.liveHost + '/task/' + task_id + '/view-detail';
   }
 
-  // encode_ep(str: string) {
-  //   str = str + this.config.salt;
-  //   const base = Buffer.from(str).toString('base64');
-  //   return base;
-  // }
+  encode_ep(str: string) {
+    str = str + this.config.salt;
+    const base = Buffer.from(str).toString('base64');
+    return base;
+  }
 
-  // decode_ep(base: string) {
-  //   let str = Buffer.from(base, 'base64').toString();
-  //   str = str.substring(0, str.length - this.config.salt.length);
-  //   return str;
-  // }
+  decode_ep(base: string) {
+    let str = Buffer.from(base, 'base64').toString();
+    str = str.substring(0, str.length - this.config.salt.length);
+    return str;
+  }
 }
