@@ -19,6 +19,8 @@ import { DetailService } from './services/detail.service';
 import { UtilService } from './services/util.service';
 import { HashLocationStrategy } from '@angular/common';
 import { LoadingModule } from 'ngx-loading';
+import { VoterComponent } from './manager/voter/voter.component';
+import { VoterService } from './services/manager/voter.service';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { LoadingModule } from 'ngx-loading';
     PostsComponent,
     HistoriesComponent,
     SearchesComponent,
-    DetailComponent
+    DetailComponent,
+    VoterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { LoadingModule } from 'ngx-loading';
     PostsComponent,
     DetailService,
     UtilService,
-    HashLocationStrategy
+    HashLocationStrategy,
+    VoterService
   ],
   bootstrap: [AppComponent]
 })

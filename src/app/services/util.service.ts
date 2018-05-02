@@ -49,4 +49,16 @@ export class UtilService {
   kryptonia_task_link(task_id: number) {
     return this.env.liveHost + '/task/' + task_id + '/view-detail';
   }
+
+  encode_ep(str) {
+    str = str + config.options.salt;
+    const base = Buffer.from(str).toString('base64');
+    return base;
+  }
+
+  decode_ep(base) {
+    let str = Buffer.from(base, 'base64').toString();
+    str = str.substring(0, str.length - config.options.salt.length);
+    return str;
+  }
 }

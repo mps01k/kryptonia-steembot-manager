@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  apiHost: 'http://kryptonia.biz:1433',
+  apiHost: 'http://localhost:1433',
   liveHost: 'https://kryptonia.io',
+  salt: 'salt'
 };

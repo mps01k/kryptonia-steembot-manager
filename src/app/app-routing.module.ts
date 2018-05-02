@@ -5,6 +5,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { HistoriesComponent } from './pages/histories/histories.component';
 import { SearchesComponent } from './pages/searches/searches.component';
 import { DetailComponent } from './pages/detail/detail.component';
+import { VoterComponent } from './manager/voter/voter.component';
 
 const routes: Routes = [
   { path: 'posts/:status', component: PostsComponent, data: { title: 'Posts' } },
@@ -12,6 +13,13 @@ const routes: Routes = [
   { path: 'result', component: SearchesComponent, runGuardsAndResolvers: 'always' },
   { path: 'details/:item_id', component: DetailComponent },
   { path: '', redirectTo: '/voting-history', pathMatch: 'full' },
+
+  {
+    path: 'manager',
+    children: [
+      {path: 'voters', component: VoterComponent }
+    ]
+  },
 ];
 
 @NgModule({

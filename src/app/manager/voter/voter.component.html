@@ -1,0 +1,32 @@
+<div class="table-responsive-md">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <table class="table table-dark table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Status</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-info btn-sm">Update</button>
+            <button type="button" class="btn btn-outline-info btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="" class="dropdown-item">Update</a>
+              <a href="" class="dropdown-item">History</a>
+              <a href="" class="dropdown-item text-danger">Disable</a>
+              <a href="" class="dropdown-item text-success">Enable</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
