@@ -17,6 +17,7 @@ import { SearchesComponent } from './pages/searches/searches.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { DetailService } from './services/detail.service';
 import { UtilService } from './services/util.service';
+import { HashLocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -35,7 +36,15 @@ import { UtilService } from './services/util.service';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [PostService, HistoryService, SearchService, PostsComponent, DetailService, UtilService],
+  providers: [
+    PostService,
+    HistoryService,
+    SearchService,
+    PostsComponent,
+    DetailService,
+    UtilService,
+    HashLocationStrategy
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
