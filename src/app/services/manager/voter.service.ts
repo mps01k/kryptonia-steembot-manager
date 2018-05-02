@@ -19,7 +19,7 @@ export class VoterService {
 
   fetchData() {
     // const
-    this.headers.append('authorization', this.utilService.encode_ep('username:password'));
+    // this.headers.append('authorization', this.utilService.encode_ep('username:password'));
     return this.http.get(this.env.apiHost + '/get-voters-list');
   }
 }
