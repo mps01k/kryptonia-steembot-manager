@@ -5,6 +5,7 @@ import { environment } from './../../environments/environment';
 @Injectable()
 export class UtilService {
   env = environment;
+  config = require('./../../../config.json');
 
   constructor() { }
 
@@ -50,15 +51,15 @@ export class UtilService {
     return this.env.liveHost + '/task/' + task_id + '/view-detail';
   }
 
-  encode_ep(str) {
-    str = str + config.options.salt;
+  encode_ep(str: string) {
+    str = str + this.config.salt;
     const base = Buffer.from(str).toString('base64');
     return base;
   }
 
-  decode_ep(base) {
+  decode_ep(base: string) {
     let str = Buffer.from(base, 'base64').toString();
-    str = str.substring(0, str.length - config.options.salt.length);
+    str = str.substring(0, str.length - this.config.salt.length);
     return str;
   }
 }
