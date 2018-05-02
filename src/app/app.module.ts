@@ -18,6 +18,7 @@ import { DetailComponent } from './pages/detail/detail.component';
 import { DetailService } from './services/detail.service';
 import { UtilService } from './services/util.service';
 import { HashLocationStrategy } from '@angular/common';
+import { LoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HashLocationStrategy } from '@angular/common';
     HttpModule,
     HttpClientModule,
     FormsModule,
+    LoadingModule
   ],
   providers: [
     PostService,

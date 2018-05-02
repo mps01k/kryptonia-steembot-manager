@@ -11,6 +11,7 @@ import { UtilService } from './../../services/util.service';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
+  public loading = false;
   item_id: number;
   details: Detail;
   histories: any;
@@ -31,7 +32,9 @@ export class DetailComponent implements OnInit {
   }
 
   showDetails() {
+    this.loading = true;
     this.detailService.getItemDetails(this.item_id).subscribe(data => {
+      this.loading = false;
       this.details = data.json().detail;
       this.histories = data.json().histories != null ? data.json().histories : [];
     });
@@ -47,5 +50,9 @@ export class DetailComponent implements OnInit {
 
   weight_percentage(weight) {
     return this.utilService.weight_percentage(weight);
+  }
+
+  task_id(task_id: number) {
+    return this.utilService.kryptonia_task_link(task_id);
   }
 }

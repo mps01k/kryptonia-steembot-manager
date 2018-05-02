@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import { environment } from './../../environments/environment';
+
 @Injectable()
 export class UtilService {
+  env = environment;
 
   constructor() { }
 
@@ -41,5 +44,9 @@ export class UtilService {
     } else {
       return str;
     }
+  }
+
+  kryptonia_task_link(task_id: number) {
+    return this.env.liveHost + '/task/' + task_id + '/view-detail';
   }
 }

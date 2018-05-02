@@ -12,6 +12,7 @@ import { UtilService } from './../../services/util.service';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+  public loading = false;
   status: string;
   valid_statuses: string[] = [
     'voted',
@@ -42,15 +43,19 @@ export class PostsComponent implements OnInit {
   }
 
   getPosts() {
+    this.loading = true;
     if (this.valid_statuses.indexOf(this.status) >= 0) {
       this.postService.fetchData(this.status).subscribe((res) => {
         if (res.json() !== 'Empty') {
+          this.loading = false;
           this.posts = res.json();
         } else {
+          this.loading = false;
           this.posts = null;
         }
       });
     } else {
+      this.loading = false;
       this.posts = null;
     }
   }
@@ -69,5 +74,9 @@ export class PostsComponent implements OnInit {
 
   detail(item_id) {
     this.router.navigate(['/details/' + item_id]);
+  }
+
+  task_id(task_id: number) {
+    return this.utilService.kryptonia_task_link(task_id);
   }
 }

@@ -1,5 +1,6 @@
 <hr>
 <div class="container-fluid">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   <div class="row" *ngIf="details!=null">
     <div class="col col-md-5">
       <div class="card">
@@ -13,20 +14,28 @@
               <td>{{ details.id }}</td>
             </tr>
             <tr>
-              <td>Task ID</td>
-              <td>{{ details.task_id }}</td>
+              <td>Kryptonia Task ID</td>
+              <td class="task-id">
+                <a href="{{ task_id(details.task_id) }}" target="_{{ details.id }}">{{ details.task_id }}</a>
+              </td>
             </tr>
             <tr>
               <td>Author</td>
-              <td class="author"><a href="https://steemit.com/@{{ details.author }}" target="_{{ details.id }}">{{ details.author }}</a></td>
+              <td class="author">
+                <a href="https://steemit.com/@{{ details.author }}" target="_{{ details.id }}">{{ details.author }}</a>
+              </td>
             </tr>
             <tr>
               <td>Permalink</td>
-              <td><a href="{{ details.link }}" target="_{{ details.id }}">{{ permalink(details.link) }}</a></td>
+              <td>
+                <a href="{{ details.link }}" target="_{{ details.id }}">{{ permalink(details.link) }}</a>
+              </td>
             </tr>
             <tr>
               <td>Status</td>
-              <td><b>{{ status(details.status) }}</b></td>
+              <td>
+                <b>{{ status(details.status) }}</b>
+              </td>
             </tr>
             <tr>
               <td>Created At</td>

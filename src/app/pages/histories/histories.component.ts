@@ -10,6 +10,7 @@ import { UtilService } from './../../services/util.service';
   styleUrls: ['./histories.component.scss']
 })
 export class HistoriesComponent implements OnInit {
+  public loading = false;
   histories: any;
 
   constructor(
@@ -24,11 +25,14 @@ export class HistoriesComponent implements OnInit {
   }
 
   getHistories() {
+    this.loading = true;
     this.historyService.fetchData().subscribe((res) => {
       // console.log(res.json());
       if (res.json() !== 'Empty') {
+        this.loading = false;
         this.histories = res.json();
       } else {
+        this.loading = false;
         this.histories = null;
       }
     });

@@ -1,4 +1,5 @@
 <div class="table-responsive">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   <table class="table table-hover table-striped table-dark table-sm" id="postsTable">
     <thead>
       <tr>
@@ -23,7 +24,7 @@
           <td class="link">
             <a href="{{ item.link }}" target="#{{ item.id }}">{{ str_limit(permalink(item.link)) }}</a>
           </td>
-          <td>{{ item.task_id }}</td>
+          <td class="task-id"><a href="{{ task_id(item.task_id) }}" target="_{{ item.id }}">{{ item.task_id }}</a></td>
           <td>
             <b>{{ c_status(item.status) }}</b>
           </td>

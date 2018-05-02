@@ -10,6 +10,7 @@ import { UtilService } from './../../services/util.service';
   styleUrls: ['./searches.component.scss']
 })
 export class SearchesComponent implements OnInit, OnDestroy {
+  public loading = false;
   field: string;
   search_value: string;
   results: any[];
@@ -33,14 +34,17 @@ export class SearchesComponent implements OnInit, OnDestroy {
   }
 
   startsearch() {
+    this.loading = true;
     // console.log(this.field, this.search_value,);
     this.field = this.route.snapshot.queryParamMap.get('field');
     this.search_value = this.route.snapshot.queryParamMap.get('value');
     this.searchService.searchValue(this.field, this.search_value).subscribe(res => {
       // console.log(this.field, res.json());
       if (res.json() === 'No Match') {
+        this.loading = false;
         this.results = null;
       } else {
+        this.loading = false;
         this.results = res.json();
       }
     });
@@ -64,6 +68,10 @@ export class SearchesComponent implements OnInit, OnDestroy {
 
   detail(item_id) {
     this.router.navigate(['/details/' + item_id]);
+  }
+
+  task_id(task_id: number) {
+    return this.utilService.kryptonia_task_link(task_id);
   }
 
   ngOnDestroy() {
