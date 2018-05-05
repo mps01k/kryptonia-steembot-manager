@@ -72,7 +72,7 @@
                   <td>{{ item.voter }}</td>
                   <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
                   <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>
-                  <td class="text-{{ item.status == 1 ? 'success' : 'warning' }}">{{ item.status == 1 ? 'Yes' : 'No' }}</td>
+                  <td class="text-{{ item.status == 1 ? 'success' : (item.status == 2 ? 'primary' : 'warning') }}">{{ item.status == 1 ? 'Yes' : (item.status == 2 ? 'Retried' : 'No') }}</td>
                   <td>{{ item.created_at | date:'short' }}</td>
                   <td>{{ item.updated_at | date:'short' }}</td>
                 </tr>

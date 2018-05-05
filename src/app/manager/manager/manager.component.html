@@ -1,0 +1,23 @@
+<div class="row full-height justify-content-md-center align-items-center" *ngIf="authenticated===false">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <div class="col col-md-4">
+    <div class="card bg-dark text-warning">
+      <div class="card-header text-primary text-center">Login</div>
+      <div class="card-content">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" [(ngModel)]="username" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <label for="username">Password</label>
+            <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="Password" (keypress)="input($event)">
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-outline-success float-right" (click)="login()">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

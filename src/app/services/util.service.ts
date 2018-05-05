@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { environment } from './../../environments/environment';
 import { config } from './../../environments/config';
 
 declare const Buffer;
+import * as Store from 'store2';
 
 @Injectable()
 export class UtilService {
+  public store = Store;
   env = environment;
   config = config;
+  headers = new Headers();
+  opts = new RequestOptions();
 
   constructor() { }
 
@@ -64,5 +69,19 @@ export class UtilService {
     let str = Buffer.from(base, 'base64').toString();
     str = str.substring(0, str.length - this.config.salt.length);
     return str;
+  }
+
+  generate_epass(username: string, raw_password: string) {
+    const password = this.encode_ep(raw_password);
+    return this.encode_ep(username + ':' + password);
+  }
+
+  get_header_options() {
+    const username = this.store.get('username');
+    const epass = this.store.get('epass');
+    this.headers.append('authorization', epass);
+    this.headers.append('username', username);
+    this.opts.headers = this.headers;
+    return this.opts;
   }
 }

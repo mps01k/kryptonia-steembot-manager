@@ -22,6 +22,7 @@ import { LoadingModule } from 'ngx-loading';
 import { VoterComponent } from './manager/voter/voter.component';
 import { VoterService } from './services/manager/voter.service';
 import { AuthService } from './services/manager/auth.service';
+import { ManagerComponent } from './manager/manager/manager.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AuthService } from './services/manager/auth.service';
     HistoriesComponent,
     SearchesComponent,
     DetailComponent,
-    VoterComponent
+    VoterComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SearchService } from './../../services/search.service';
+import { AuthService } from './../../services/manager/auth.service';
 import { PostsComponent } from './../../pages/posts/posts.component';
 import { AppComponent } from './../../app.component';
 
@@ -20,6 +21,7 @@ export class NavigationComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private searchService: SearchService,
+    private authService: AuthService,
     private postsComponent: PostsComponent
   ) {
     this.search_value = this.route.snapshot.queryParamMap.get('value');
@@ -62,5 +64,9 @@ export class NavigationComponent implements OnInit {
     if (event.keyCode === 13) {
       this.search();
     }
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
