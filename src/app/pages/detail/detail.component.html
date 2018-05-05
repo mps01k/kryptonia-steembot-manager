@@ -22,7 +22,7 @@
             <tr>
               <td>Author</td>
               <td class="author">
-                <a href="https://steemit.com/@{{ details.author }}" target="_{{ details.id }}">{{ details.author }}</a>
+                <a href="{{ author_link(details.author) }}" target="_{{ details.id }}">{{ details.author }}</a>
               </td>
             </tr>
             <tr>
@@ -69,7 +69,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of histories">
-                  <td>{{ item.voter }}</td>
+                  <td class="voter"><a href="{{ author_link(item.voter) }}">{{ item.voter }}</a></td>
                   <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
                   <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>
                   <td class="text-{{ item.status == 1 ? 'success' : (item.status == 2 ? 'primary' : 'warning') }}">{{ item.status == 1 ? 'Yes' : (item.status == 2 ? 'Retried' : 'No') }}</td>

@@ -15,8 +15,9 @@ export class VoterService {
     private utilService: UtilService
   ) {}
 
-  fetchData() {
-    const opts = this.utilService.get_header_options();
+  fetchData(username: string, epass: string) {
+    console.log(username, epass);
+    const opts = this.utilService.get_header_options(username, epass);
     return this.http.get(this.env.apiHost + '/api/get-voters-list', opts);
   }
 }

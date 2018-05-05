@@ -19,7 +19,7 @@
       <ng-template #hasposts>
         <tr *ngFor="let item of posts">
           <td class="author">
-            <a href="https://steemit.com/@{{ item.author }}" target="_{{ item.id }}">{{ item.author }}</a>
+            <a href="{{ author_link(item.author) }}" target="_{{ item.id }}">{{ item.author }}</a>
           </td>
           <td class="link">
             <a href="{{ item.link }}" target="#{{ item.id }}">{{ str_limit(permalink(item.link)) }}</a>

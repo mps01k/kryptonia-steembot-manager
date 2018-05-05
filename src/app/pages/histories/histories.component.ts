@@ -12,12 +12,17 @@ import { UtilService } from './../../services/util.service';
 export class HistoriesComponent implements OnInit {
   public loading = false;
   histories: any;
+  voter: string;
 
   constructor(
     private historyService: HistoryService,
     private utilService: UtilService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
+    route.params.subscribe(res => {
+      this.voter = res.voter;
+    });
   }
 
   ngOnInit() {
@@ -44,5 +49,9 @@ export class HistoriesComponent implements OnInit {
 
   detail(item_id) {
     this.router.navigate(['/details/' + item_id]);
+  }
+
+  author_link(author: string) {
+    return this.utilService.author_link(author);
   }
 }

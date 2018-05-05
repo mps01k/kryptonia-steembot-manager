@@ -20,9 +20,8 @@ export class AuthService {
     private router: Router
   ) { }
 
-  check(callback) {
-    const username = this.store.get('username');
-    const epass = this.store.get('epass');
+  check(username, epass, callback) {
+    console.error(username, epass);
     if (username === '' || epass === '' || username === null || epass === null) {
       // return 'declined';
       callback('declined');
@@ -52,10 +51,9 @@ export class AuthService {
     });
   }
 
-  logout() {
+  logout(callback) {
     this.store.set('username', '');
     this.store.set('epass', '');
-    this.router.navigateByUrl('/manager');
-    // this.router.navigateByUrl(this.router.url);
+    callback('done');
   }
 }

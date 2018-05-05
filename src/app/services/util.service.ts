@@ -17,6 +17,10 @@ export class UtilService {
 
   constructor() { }
 
+  author_link(author: string) {
+    return 'https://steemit.com/@' + author;
+  }
+
   permalink(link: string) {
     link = link.substring(link.indexOf('@'));
     link = link.substring(link.indexOf('/') + 1);
@@ -76,9 +80,7 @@ export class UtilService {
     return this.encode_ep(username + ':' + password);
   }
 
-  get_header_options() {
-    const username = this.store.get('username');
-    const epass = this.store.get('epass');
+  get_header_options(username: string, epass: string) {
     this.headers.append('authorization', epass);
     this.headers.append('username', username);
     this.opts.headers = this.headers;

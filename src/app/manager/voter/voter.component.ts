@@ -15,16 +15,18 @@ export class VoterComponent extends ManagerComponent implements OnInit {
   }
 
   getVotersList() {
-    this.planned_url = this.router.url;
     this.loading = true;
-    this.voterService.fetchData().subscribe(res => {
+    this.voterService.fetchData(this.username, this.epass).subscribe(res => {
       this.loading = false;
+      console.log(res.json());
       if (res.json() === 'Not Authenticated') {
         this.authenticated = false;
       } else if (res.json() === 'Empty') {
+        this.authenticated = true;
         this.voters = null;
       } else {
         this.authenticated = true;
+        this.voters = res.json();
       }
     });
   }

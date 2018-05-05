@@ -11,13 +11,14 @@ import { VoterComponent } from './manager/voter/voter.component';
 const routes: Routes = [
   { path: 'posts/:status', component: PostsComponent, data: { title: 'Posts' } },
   { path: 'voting-history', component: HistoriesComponent, data: { title: 'Histories' } },
+  { path: 'voting-history/:voter', component: HistoriesComponent, data: { title: 'Histories' } },
   { path: 'result', component: SearchesComponent, runGuardsAndResolvers: 'always' },
   { path: 'details/:item_id', component: DetailComponent },
   { path: '', redirectTo: '/posts/pending', pathMatch: 'full' },
+  { path: 'manager', redirectTo: '/manager/voters', pathMatch: 'full' },
 
   {
     path: 'manager',
-    component: ManagerComponent,
     children: [
       {path: 'voters', component: VoterComponent }
     ]

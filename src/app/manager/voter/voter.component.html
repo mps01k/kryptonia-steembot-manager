@@ -1,4 +1,7 @@
-<div class="table-responsive-md" *ngIf="authenticated===true">
+<ng-template #loginForm>
+  <app-manager></app-manager>
+</ng-template>
+<div *ngIf="authenticated===true; else loginForm">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   <table class="table table-dark table-sm">
     <thead>
@@ -10,10 +13,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let item of voters">
+        <td>{{ item.id }}</td>
+        <td class="author"><a href="{{ author_link(item.username) }}" target="_">{{ item.username }}</a></td>
+        <td><span class="text-{{ item.status == 1 ? 'success' : 'warning' }}">{{ item.status == 1 ? 'Active' : 'Disabled' }}</span></td>
         <td>
           <div class="btn-group">
             <button type="button" class="btn btn-outline-info btn-sm">Update</button>

@@ -19,7 +19,7 @@
       <ng-template #hasposts>
         <tr *ngFor="let item of results">
           <td class="author">
-            <a href="https://steemit.com/@{{ item.author }}" target="_{{ item.id }}">{{ item.author }}</a>
+            <a href="{{ author_link(item.author) }}" target="_{{ item.id }}">{{ item.author }}</a>
           </td>
           <td class="link">
             <a href="{{ item.link }}" target="#{{ item.id }}">{{ str_limit(permalink(item.link)) }}</a>
@@ -62,7 +62,7 @@
       <ng-template #hashistories>
         <tr *ngFor="let item of results">
           <td class="voter">
-            <a href="https://steemit.com/@{{ item.voter }}" target="_{{ item.id }}">{{ item.voter }}</a>
+            <a href="{{ author_link(item.voter) }}" target="_{{ item.id }}">{{ item.voter }}</a>
           </td>
           <td class="text-{{ weight_percentage(item.weight) >= 80 ? 'success' : 'danger' }}">{{ weight_percentage(item.weight) }}%</td>
           <td class="text-{{ item.commented == 1 ? 'success' : 'info' }}">{{ item.commented == 1 ? 'Yes' : 'No' }}</td>

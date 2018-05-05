@@ -79,4 +79,8 @@ export class PostsComponent implements OnInit {
   task_id(task_id: number) {
     return this.utilService.kryptonia_task_link(task_id);
   }
+
+  author_link(author: string) {
+    return this.utilService.author_link(author);
+  }
 }
