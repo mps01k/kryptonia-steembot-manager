@@ -18,7 +18,6 @@ export class VoterComponent extends ManagerComponent implements OnInit {
     this.loading = true;
     this.voterService.fetchData(this.username, this.epass).subscribe(res => {
       this.loading = false;
-      console.log(res.json());
       if (res.json() === 'Not Authenticated') {
         this.authenticated = false;
       } else if (res.json() === 'Empty') {

@@ -21,7 +21,6 @@ export class AuthService {
   ) { }
 
   check(username, epass, callback) {
-    console.error(username, epass);
     if (username === '' || epass === '' || username === null || epass === null) {
       // return 'declined';
       callback('declined');

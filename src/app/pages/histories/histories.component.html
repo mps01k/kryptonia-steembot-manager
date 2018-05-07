@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr *ngIf="histories === null;else hashistories">
-        <td colspan="6" align="center">No Content</td>
+        <td colspan="7" align="center">No Content</td>
       </tr>
       <ng-template #hashistories>
         <tr *ngFor="let item of histories">

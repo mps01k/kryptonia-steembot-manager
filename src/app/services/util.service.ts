@@ -81,8 +81,8 @@ export class UtilService {
   }
 
   get_header_options(username: string, epass: string) {
-    this.headers.append('authorization', epass);
-    this.headers.append('username', username);
+    this.headers.set('authorization', epass);
+    this.headers.set('username', username);
     this.opts.headers = this.headers;
     return this.opts;
   }

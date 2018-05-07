@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { HistoryService } from './../../services/history.service';
 import { UtilService } from './../../services/util.service';
+import { SearchService } from './../../services/search.service';
 
 @Component({
   selector: 'app-histories',
@@ -17,8 +18,9 @@ export class HistoriesComponent implements OnInit {
   constructor(
     private historyService: HistoryService,
     private utilService: UtilService,
+    private searchService: SearchService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     route.params.subscribe(res => {
       this.voter = res.voter;
@@ -31,16 +33,28 @@ export class HistoriesComponent implements OnInit {
 
   getHistories() {
     this.loading = true;
-    this.historyService.fetchData().subscribe((res) => {
-      // console.log(res.json());
-      if (res.json() !== 'Empty') {
-        this.loading = false;
-        this.histories = res.json();
-      } else {
-        this.loading = false;
-        this.histories = null;
-      }
-    });
+    if (this.voter == null) {
+      this.historyService.fetchData().subscribe((res) => {
+        if (res.json() !== 'Empty') {
+          this.loading = false;
+          this.histories = res.json();
+        } else {
+          this.loading = false;
+          this.histories = null;
+        }
+      });
+    } else {
+      this.searchService.searchValue('', this.voter).subscribe(res => {
+        // console.log(this.field, res.json());
+        if (res.json() === 'No Match') {
+          this.loading = false;
+          this.histories = null;
+        } else {
+          this.loading = false;
+          this.histories = res.json();
+        }
+      });
+    }
   }
 
   weight_percentage(weight) {

@@ -22,10 +22,10 @@
             <button type="button" class="btn btn-outline-info btn-sm">Update</button>
             <button type="button" class="btn btn-outline-info btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="" class="dropdown-item">Update</a>
-              <a href="" class="dropdown-item">History</a>
-              <a href="" class="dropdown-item text-danger">Disable</a>
-              <a href="" class="dropdown-item text-success">Enable</a>
+              <a routerLink="" class="dropdown-item">Update</a>
+              <a routerLink="/voting-history/{{ item.username }}" class="dropdown-item">History</a>
+              <a routerLink="" class="dropdown-item text-danger">Disable</a>
+              <a routerLink="" class="dropdown-item text-success">Enable</a>
             </div>
           </div>
         </td>
