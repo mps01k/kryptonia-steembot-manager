@@ -1,0 +1,78 @@
+<ng-template #loginForm>
+  <app-manager></app-manager>
+</ng-template>
+<div *ngIf="authenticated===true; else loginForm">
+  <hr>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <div class="container">
+    <div class="col col-md-12">
+      <div class="card bg-warning text-white">
+        <div class="card-header h3">Option</div>
+        <div class="content">
+          <table class="table table-dark table-lg">
+            <tr>
+              <td>API Host</td>
+              <td>
+                <input type="url" class="form-control" [value]="apiHost">
+              </td>
+              <td>
+                <button type="button" class="btn btn-dark">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Salt</td>
+              <td>
+                <input type="text" class="form-control" [value]="salt">
+              </td>
+              <td>
+                <button type="button" class="btn btn-dark">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Voting Interval</td>
+              <td>
+                <div class="input-group">
+                  <input type="number" min="5000" class="form-control text-right" [value]="voting_interval">
+                  <div class="input-group-append">
+                    <span class="input-group-text">miliseconds</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn btn-dark">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Max Weight</td>
+              <td>
+                <div class="input-group">
+                  <input type="range" min="0" max="100" [(ngModel)]="max_weight" class="form-control">
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{ max_weight }} %</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn btn-dark">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Min Weight</td>
+              <td>
+                <div class="input-group">
+                  <input type="range" min="0" max="100" [(ngModel)]="min_weight" class="form-control">
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{ min_weight }} %</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn btn-dark">Update</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

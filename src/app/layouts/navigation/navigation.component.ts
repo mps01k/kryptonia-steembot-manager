@@ -67,8 +67,8 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout(function (res) {
-      this.router.navigate(['/manager']);
+    this.authService.logout(this, function (res, parent) {
+      parent.router.navigate(['/manager']);
     });
   }
 }

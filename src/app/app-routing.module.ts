@@ -7,6 +7,7 @@ import { SearchesComponent } from './pages/searches/searches.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { ManagerComponent } from './manager/manager/manager.component';
 import { VoterComponent } from './manager/voter/voter.component';
+import { ConfigComponent } from './manager/config/config.component';
 
 const routes: Routes = [
   { path: 'posts/:status', component: PostsComponent, data: { title: 'Posts' } },
@@ -20,7 +21,8 @@ const routes: Routes = [
   {
     path: 'manager',
     children: [
-      {path: 'voters', component: VoterComponent }
+      { path: 'voters', component: VoterComponent },
+      { path: 'config', component: ConfigComponent }
     ]
   },
 ];

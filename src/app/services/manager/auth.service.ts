@@ -50,9 +50,9 @@ export class AuthService {
     });
   }
 
-  logout(callback) {
+  logout(parent, callback) {
     this.store.set('username', '');
     this.store.set('epass', '');
-    callback('done');
+    callback('done', parent);
   }
 }

@@ -41,7 +41,6 @@ export class ManagerComponent implements OnInit {
     this.loading = true;
     this.authService.check(this.username, this.epass, (res) => {
       this.loading = false;
-      console.log(res);
       if (res === 'granted') {
         this.authenticated = true;
       } else {
@@ -56,11 +55,7 @@ export class ManagerComponent implements OnInit {
       parent.loading = false;
       if (res === 'valid') {
         parent.authenticated = true;
-        if (parent.planned_url === '/manager' || parent.planned_url === null) {
-          parent.router.navigate(['/manager/voters']);
-        } else {
-          parent.router.navigate([parent.planned_url]);
-        }
+        parent.router.navigate(['/manager']);
       } else {
         parent.authenticated = false;
       }
